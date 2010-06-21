@@ -1,0 +1,15 @@
+Respawn = "BASE";
+RespawnDelay = 6;
+RespawnDialog = 0;
+
+#include "R3F_revive\dlg_attente_reanimation.h"
+#include "wepsel\dlg_wepsel.hpp"
+#include "z_dialogs\z_dlg.hpp"
+
+#include "R3F_ARTY_AND_LOG\desc_include.h"
+class RscTitles
+{
+#include "R3F_ARTY_AND_LOG\desc_rsct_include.h"
+};
+
+DisabledAI = true;
