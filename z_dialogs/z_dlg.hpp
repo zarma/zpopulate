@@ -118,7 +118,7 @@ class Z_Dialog {
   	idc = DLG_Z_LIST;
   	x = 0.21;
   	y = 0.165;
-  	w = 0.835;
+  	w = 0.79;
   	h = 0.72;
 		colorText[] = {1, .5, 0, .9};
 		soundSelect[] = {"",0.1,1};
@@ -179,5 +179,63 @@ class Z_Dialog {
 		sizeEx = 0.04;
 	 	text = "Close";
   	action = "closeDialog 0;";
+  };
+};
+class Z_Dialog_selected {
+ //... 
+  idd = DLG_Z_IDDSEL;
+  movingEnable = 1; 
+  controlsBackground[] = {BACKGROUND1,HEADER};
+  class BACKGROUND1 : RscText_Z {
+    colorBackground[] = {.6, .6, .6, .8};
+    text = ;
+  	x = 0.2;
+  	y = 0.1;
+  	w = 0.8;
+  	h = 0.8;
+  	moving = 1;
+  };
+  class BACKGROUND2 : RscText_Z {
+    colorBackground[] = {.4, .4, .4, .8};
+    text = ;
+  	x = 1.0;
+  	y = 0.1;
+  	w = 0.8;
+  	h = 0.8;
+  	moving = 1;
+  };
+  class HEADER : RscText_Z {
+    x = 0.2;
+    y = 0.1;
+    w = 0.8;
+    h = 0.06;
+		moving = 0;
+    colorBackground[] = {.2, .2, .2, .8};
+		colorText[] = {1, .5, 0, .9};
+    sizeEx = 0.04;
+    text = "Selected objects";
+  };
+  controls[] = { SELLIST,ZDELBTN };
+  class SELLIST : RscListBox_Z {
+  	idc = DLG_Z_LISTSEL;
+  	x = 0.21;
+  	y = 0.165;
+  	w = 0.79;
+  	h = 0.72;
+		colorText[] = {1, .5, 0, .9};
+		soundSelect[] = {"",0.1,1};
+		onLBSelChanged = "hint str _this";
+		moving = 1;
+  };
+  class ZDELBTN : RscButton_Z
+  {
+  	idc = DLG_Z_ZDELBTN;
+  	x = 0.2;
+  	y = 0;
+  	w = 0.15;
+  	h = 0.04;
+		sizeEx = 0.04;
+	 	text = "DELETE";
+  	action = "hint str _this;";
   };
 };

@@ -34,6 +34,7 @@ z_stock_info_object = {
 };
 
 z_createVehicle = {
+// TODO CREATE MARKER IN POSITION WITH DISPLAYNAME
   private ["_vehicle","_position","_dir"];
   _typevehicle = _this select 0;
   _position = _this select 1;
@@ -41,6 +42,7 @@ z_createVehicle = {
   _vehicle = _typevehicle createVehicle [1,1,0];
   _vehicle setPosASL _position;
 	_vehicle setdir _dir;
+	z_objects = z_objects + [_vehicle];
 };
 
 
