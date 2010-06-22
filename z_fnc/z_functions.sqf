@@ -33,6 +33,19 @@ z_stock_info_object = {
     
 };
 
+z_createVehicle = {
+  private ["_vehicle","_position","_dir"];
+  _typevehicle = _this select 0;
+  _position = _this select 1;
+  _dir  = _this select 2;
+  _vehicle = _typevehicle createVehicle [1,1,0];
+  _vehicle setPosASL _position;
+	_vehicle setdir _dir;
+};
+
+
+// TO DELETE CODE ABOVE
+
 z_configtest = {
 
   	_CfgVehicles = configFile >> "CfgVehicles";

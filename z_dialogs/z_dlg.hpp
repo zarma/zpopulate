@@ -113,7 +113,7 @@ class Z_Dialog {
     sizeEx = 0.04;
     text = "Available objects";
   };
-  controls[] = { VEHLIST,ZMANBTN,ZVEHBTN,ZCLOSEBTN };
+  controls[] = { VEHLIST,ZMANBTN,ZVEHBTN,ZSELECTBTN,ZTHINGBTN,ZCLOSEBTN };
   class VEHLIST : RscListBox_Z {
   	idc = DLG_Z_LIST;
   	x = 0.21;
@@ -122,6 +122,7 @@ class Z_Dialog {
   	h = 0.72;
 		colorText[] = {1, .5, 0, .9};
 		soundSelect[] = {"",0.1,1};
+		onLBSelChanged = "hint str _this";
 		moving = 1;
   };
   class ZMANBTN : RscButton_Z
@@ -146,10 +147,32 @@ class Z_Dialog {
 	 	text = "Vehicles";
   	action = "Z_TYPE_SELECTED='vehicles';";
   };
+  class ZTHINGBTN : RscButton_Z
+  {
+  	idc = DLG_Z_ZTHINGBTN;
+  	x = 0.6;
+  	y = 0;
+  	w = 0.15;
+  	h = 0.04;
+		sizeEx = 0.04;
+	 	text = "Things";
+  	action = "Z_TYPE_SELECTED='';";
+  };
+  class ZSELECTBTN : RscButton_Z
+  {
+  	idc = DLG_Z_ZSELECTBTN;
+  	x = 0.8;
+  	y = 0;
+  	w = 0.15;
+  	h = 0.04;
+		sizeEx = 0.04;
+	 	text = "Select";
+  	action = "Z_SELECTED=true;";
+  };
   class ZCLOSEBTN : RscButton_Z
   {
   	idc = DLG_Z_CLOSEBTN;
-  	x = 0.6;
+  	x = 1.0;
   	y = 0;
   	w = 0.15;
   	h = 0.04;
