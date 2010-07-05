@@ -1,5 +1,10 @@
 #include "def_wepsel.hpp"
 
+//----- player changed by _unit 
+// change made by =[A*C]= Z
+//-----
+_unit = player;
+
 _weaponsList = [];
 _namelist = [];
 _cfgweapons = configFile >> "cfgWeapons";
@@ -65,7 +70,7 @@ for "_i" from 0 to (count _weaponsList)-1 do {
 };
 lbSort (findDisplay DLG_WEP_IDD displayCtrl DLG_WEP_LIST); 
 
-// highlight player's current one
+// highlight _unit's current one
 _index=0;
 for "_i" from 0 to (lbSize DLG_WEP_LIST)-1 do {
 	lbSetCurSel [DLG_WEP_LIST,_i];
@@ -74,7 +79,7 @@ for "_i" from 0 to (lbSize DLG_WEP_LIST)-1 do {
 			if ((_weaponsList select lbValue [DLG_WEP_LIST, _i]) select 0==_x) then {
 				_index=_i;
 			};
-		}forEach weapons player;
+		}forEach weapons _unit;
 	};
 };
 // put the selection somewhat in the middle of the displayed listing
@@ -123,27 +128,27 @@ while {ctrlVisible DLG_WEP_LIST} do {
 if (_lstidx==_index) exitWith {};
 _wepsel=(_weaponsList select _wepidx) select 0;
 
-// equip player with selected weapon, and all compatible mags
+// equip _unit with selected weapon, and all compatible mags
 KRON_MAGS=[];
-{player removeMagazine _x} forEach magazines player;
+{_unit removeMagazine _x} forEach magazines _unit;
 _muzzles = getArray(configfile >> "cfgWeapons" >> _wepsel >> "muzzles");
 {
 	if (_x=="this") then {
 		_mags = getArray(configfile >> "cfgWeapons" >> _wepsel >> "magazines");
 		{
 			KRON_MAGS=KRON_MAGS+[_x];
-			player addMagazine _x;
+			_unit addMagazine _x;
 		}forEach _mags;
 	} else {
 		_mags = getArray(configfile >> "cfgWeapons" >> _wepsel >> _x >> "magazines");
 		{
 			KRON_MAGS=KRON_MAGS+[_x];
-			player addMagazine _x;
+			_unit addMagazine _x;
 		}forEach _mags;
 	};
 }forEach _muzzles;
 
-player addWeapon _wepsel;
-{if (_x!=_wepsel) then {player removeWeapon _x}} forEach weapons player;
+_unit addWeapon _wepsel;
+{if (_x!=_wepsel) then {_unit removeWeapon _x}} forEach weapons _unit;
 
 

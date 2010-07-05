@@ -45,6 +45,21 @@ z_createVehicle = {
 	_vehicle
 };
 
+z_createUnit = {
+// TODO CREATE MARKER IN POSITION WITH DISPLAYNAME
+  private ["_unit","_position","_dir","_side"];
+  hint format["z_createUnit %1",_this];
+  _type = _this select 0;
+  _position = _this select 1;
+  _dir  = _this select 2;
+  _side=east;
+  _group = createGroup _side;
+  _unit = _group createUnit [_type, [1,1,0.2], [], 0, 'CAN_COLLIDE'];
+  _unit setPosASL _position;
+	_group setFormDir _dir;
+	_unit
+};
+
 z_objetcinfo = {
   private ["_object"];
   _object = _this select 0;
@@ -72,6 +87,8 @@ z_generatesqf = {
     _T = "<createVehicle >" + _str + "</createVehicle>";
     
     if (_x iskindof "Man") then {
+      	_str = _str + "<addWeapon>"+format["%1",weapons _x]+"</addWeapon>";
+      	_str = _str + "<addMagazine>"+format["%1",magazines _x]+"</addMagazine>";
         _T = "<createUnit>"+_str+"</createUnit>";
     };
   
@@ -84,14 +101,16 @@ z_generatesqf = {
   copyToClipboard _text;
 };
 
-z_copyclipboard = {
-  
-  _text = _this select 0;;
-  
-  _text =  _text + "<br>" ;
-      
-  _result
+z_side = {
+_object = _this select 0; 
+_sidelist = ["east","west","resistance","civilian"];
+_sidenumber = getnumber(_object >> "side");
+_side = _sidelist select _sidenumber;
+hint format["z_side %1 >> %2",_object,_side];
+_side
 };
+
+
 
 // TO DELETE CODE ABOVE
 

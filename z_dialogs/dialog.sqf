@@ -13,9 +13,10 @@
 //////////////////////////////////////////////////////////////////
 
 #include "z_def.hpp"
+private ["_vehicle"];
 disableSerialization; // A cause des displayCtrl
 
-format["Z_MENLIST %1  ", Z_MENLIST] call z_smsg;
+//format["Z_MENLIST %1  ", Z_MENLIST] call z_smsg;
 
 Z_SELECTED=false;
 ZCURLIST = [];
@@ -35,7 +36,7 @@ while {dialog} do {
       case 'vehicles': {Z_VEHLIST};
  //     case 'things': {exitWith {hint "things not implemented";};};
     };
-    format["ZCURLIST %1  ", ZCURLIST] call z_smsg;
+//    format["ZCURLIST %1  ", ZCURLIST] call z_smsg;
     lbClear DLG_Z_LIST;
     for "_i" from 0 to (count ZCURLIST)-1 do {
     	_array = ZCURLIST select _i;
@@ -44,6 +45,7 @@ while {dialog} do {
     //	lbSetPicture [DLG_Z_LIST, _i, _array select 1];
     	lbSetValue [DLG_Z_LIST, _i, _i];
     };
+    Z_TYPE_LIST=Z_TYPE_SELECTED;
     Z_TYPE_SELECTED="";
     //format["_index %1 ", _index] call z_smsg;
   };
@@ -51,9 +53,15 @@ while {dialog} do {
     _lbidx = lbCurSel DLG_Z_LIST;
     _index = lbValue [DLG_Z_LIST, _lbidx];
 		_selected = (ZCURLIST select _index) select 0;
-		_vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createvehicle;
+		if (Z_TYPE_LIST=="vehicles") then {
+		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createvehicle;
+    };
+    if (Z_TYPE_LIST=="men") then {
+		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createunit;
+    };
 		z_objects = z_objects + [_vehicle];
 		Z_SELECTED=false;
 	};
+  
 };
 

@@ -29,7 +29,7 @@ if (_format=="TEXT") then {
 };
 if (_format=="XML") then {
 	
-	_str = "<type>"+typeOf player+"</type>"+"<number>"+format["%1",z_nbocc]+"</number>";
+	_str = "<type>"+z_unittype+"</type>"+"<number>"+format["%1",z_nbocc]+"</number>";
 //		_str = _str + "<setPosASL>"+format["%1",getPosASL player]+"</setPosASL>";
 	_str = _str + "<setPosASL>"+format["%1",getPosASL player]+"</setPosASL>";
 	_str = _str + "<setDir>"+format["%1",getDir player]+"</setDir>";

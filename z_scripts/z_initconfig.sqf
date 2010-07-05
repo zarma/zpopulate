@@ -5,8 +5,6 @@
 
 
 /////////////////////////////////////////////////////////////////*/
-hint "initconfig";
-
 Z_VEHCLASSES = ["car", "motorcycle", "tank", "helicopter", "airplane"];
 Z_STATICCLASSES = ["StaticWeapon"];
 Z_MENCLASSES = ["soldier"];
