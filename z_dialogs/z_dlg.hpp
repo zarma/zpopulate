@@ -215,7 +215,7 @@ class Z_Dialog_selected {
     sizeEx = 0.04;
     text = "Selected objects";
   };
-  controls[] = { SELLIST,ZDELBTN };
+  controls[] = { SELLIST,ZDELBTN,ZGENBTN };
   class SELLIST : RscListBox_Z {
   	idc = DLG_Z_LISTSEL;
   	x = 0.21;
@@ -237,5 +237,16 @@ class Z_Dialog_selected {
 		sizeEx = 0.04;
 	 	text = "DELETE";
   	action = "hint str _this;";
+  };
+  class ZGENBTN : RscButton_Z
+  {
+  	idc = DLG_Z_ZGENBTN;
+  	x = 0.4;
+  	y = 0;
+  	w = 0.15;
+  	h = 0.04;
+		sizeEx = 0.04;
+	 	text = "GENERATE";
+  	action = "call z_generatesqf";
   };
 };

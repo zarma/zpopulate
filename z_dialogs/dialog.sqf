@@ -51,8 +51,8 @@ while {dialog} do {
     _lbidx = lbCurSel DLG_Z_LIST;
     _index = lbValue [DLG_Z_LIST, _lbidx];
 		_selected = (ZCURLIST select _index) select 0;
-		 [(ZCURLIST select _index) select 2, getPosASL player,getDir player] spawn z_createvehicle;
-		hint format ["selected : %1 ", _selected];
+		_vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createvehicle;
+		z_objects = z_objects + [_vehicle];
 		Z_SELECTED=false;
 	};
 };
