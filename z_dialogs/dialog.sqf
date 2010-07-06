@@ -58,6 +58,8 @@ while {dialog} do {
     };
     if (Z_TYPE_LIST=="men") then {
 		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createunit;
+		  z_last_created_unit = _vehicle;
+		  z_selected_unit = z_last_created_unit;
     };
 		z_objects = z_objects + [_vehicle];
 		Z_SELECTED=false;

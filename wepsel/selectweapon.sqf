@@ -3,8 +3,9 @@
 //----- player changed by _unit 
 // change made by =[A*C]= Z
 //-----
-_unit = player;
-
+private ["_unit"];
+_unit = z_selected_unit;
+ format["_unit %1  ", _unit] call z_smsg ;
 _weaponsList = [];
 _namelist = [];
 _cfgweapons = configFile >> "cfgWeapons";

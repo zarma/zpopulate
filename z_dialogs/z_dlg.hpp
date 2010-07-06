@@ -236,7 +236,7 @@ class Z_Dialog_selected {
   	h = 0.04;
 		sizeEx = 0.04;
 	 	text = "DELETE";
-  	action = "hint str _this;";
+  	action = "call z_deleteSelectedObject";
   };
   class ZGENBTN : RscButton_Z
   {
