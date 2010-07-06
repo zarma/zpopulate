@@ -52,7 +52,8 @@ z_createUnit = {
   _type = _this select 0;
   _position = _this select 1;
   _dir  = _this select 2;
-  _side=east;
+  format["side %1  ", [_type] call z_side] call z_smsg ;
+  _side=[_type] call z_side;
   _group = createGroup _side;
   _unit = _group createUnit [_type, [1,1,0.2], [], 0, 'CAN_COLLIDE'];
   _unit setPosASL _position;
@@ -102,9 +103,9 @@ z_generatesqf = {
 };
 
 z_side = {
-_object = _this select 0; 
-_sidelist = ["east","west","resistance","civilian"];
-_sidenumber = getnumber(_object >> "side");
+_objectclass = _this select 0; 
+_sidelist = [east,west,resistance,civilian];
+_sidenumber = getnumber(configfile >> "CfgVehicles" >>  _objectclass >> "side");
 _side = _sidelist select _sidenumber;
 hint format["z_side %1 >> %2",_object,_side];
 _side
