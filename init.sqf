@@ -1,3 +1,7 @@
+diag_log text ""; 
+diag_log text format["|=============================   %1   =============================|", missionName]; // ARMA2OA.RPT
+diag_log text "";
+
 execVM "R3F_revive\revive_init.sqf";
 
 // For the demo mission explanation
