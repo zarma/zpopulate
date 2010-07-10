@@ -5,8 +5,8 @@ class RscText_Z {
   type = CT_STATIC;
   idc = -1; 
   style = ST_LEFT;
-  colorBackground[] = {0, 0, 0, 1};
-  colorText[] = {1, 1, 1, 1};
+  colorBackground[] = {0, 0, 0, 0};
+  colorText[] = {0.2, .2, 0.2, 1};
   font = FontM;
   sizeEx = 0.04;
   h = 0.04;
@@ -79,6 +79,54 @@ soundClick[] = { "", 0, 1 }; // no sound
 soundEscape[] = { "", 0, 1 }; // no sound 
 };
 
+class RscCombo_Z
+{	
+	idc = -1;
+	type = CT_COMBO;
+	style = ST_LEFT; 
+	colorSelect[] = {0, 0.2, 0.4, 1};
+	colorSelectBackground[] = {0, 0.2, 0.4, 0.1};
+	colorText[] = {0, 0, 0, 1};
+	colorScrollbar[] = {0, 0, 0, 1};
+	colorBackground[] = {0.4, 0.4, 0.4, 0};
+	colorBorder[] = {0, 0, 0, 1};
+	colorShadow[] = {0, 0, 0, 1};
+	soundSelect[] = { "", 0, 1 };
+	soundExpand[] = { "", 0, 1 };
+	soundCollapse[] = { "", 0, 1 };
+ 	borderSize = 0;
+	font = "TahomaB";
+	sizeEx = 0.02; 
+	rowHeight = 0.025;
+	wholeHeight = 0.3;
+	text = "";
+	maxHistoryDelay = 0;
+	default = true;
+	
+	x = 0; y = 0;
+	w = 0; h = 0;
+	
+	thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
+	arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
+	arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
+	border = "\ca\ui\data\ui_border_scroll_ca.paa";
+	
+	autoScrollSpeed = -1;
+	autoScrollDelay = 5;
+	autoScrollRewind = 0;
+
+	class ScrollBar 
+	{
+		color[] = {1, 1, 1, 0.6};
+		colorActive[] = {1, 1, 1, 1};
+		colorDisabled[] = {1, 1, 1, 0.3};
+		thumb = "\ca\ui\data\ui_scrollbar_thumb_ca.paa";
+		arrowFull = "\ca\ui\data\ui_arrow_top_active_ca.paa";
+		arrowEmpty = "\ca\ui\data\ui_arrow_top_ca.paa";
+		border = "\ca\ui\data\ui_border_scroll_ca.paa";
+	};
+};
+
 class Z_Dialog {
  //... 
   idd = DLG_Z_IDD;
@@ -113,18 +161,25 @@ class Z_Dialog {
     sizeEx = 0.04;
     text = "Available objects";
   };
-  controls[] = { VEHLIST,ZMANBTN,ZVEHBTN,ZSELECTBTN,ZTHINGBTN,ZCLOSEBTN };
+  controls[] = { VEHLIST,FACTIONLIST,ZMANBTN,ZVEHBTN,ZSELECTBTN,ZTHINGBTN,ZCLOSEBTN };
   class VEHLIST : RscListBox_Z {
   	idc = DLG_Z_LIST;
   	x = 0.21;
   	y = 0.165;
   	w = 0.79;
   	h = 0.72;
-		colorText[] = {1, .5, 0, .9};
+		colorText[] = {0, 0, 0, 1};
 		soundSelect[] = {"",0.1,1};
 		onLBSelChanged = "hint str _this";
 		moving = 1;
   };
+  class FACTIONLIST: RscCombo_Z  
+	{
+		idc = DLG_Z_FACTION_COMBO;
+		x = 1; y = 0.1;
+		w = 0.15; h = 0.04;
+		onLBSelChanged = "call z_selectFaction";
+	};
   class ZMANBTN : RscButton_Z
   {
   	idc = DLG_Z_ZMANBTN;
@@ -222,9 +277,8 @@ class Z_Dialog_selected {
   	y = 0.165;
   	w = 0.79;
   	h = 0.72;
-		colorText[] = {1, .5, 0, .9};
+		colorText[] = {0, 0, 0, 1};
 		soundSelect[] = {"",0.1,1};
-		onLBSelChanged = "hint str _this";
 		moving = 1;
   };
   class ZDELBTN : RscButton_Z

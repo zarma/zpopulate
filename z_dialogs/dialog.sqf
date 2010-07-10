@@ -27,8 +27,17 @@ _dlg = findDisplay DLG_Z_IDD;
 
 _ctrlList = _dlg displayCtrl DLG_Z_LIST;
 
+_index = 0;
+{
+  lbAdd [DLG_Z_FACTION_COMBO,format["%1",_x]];
+  lbSetValue [DLG_Z_FACTION_COMBO, _index, _index];
+  _index = _index + 1;
+} foreach Z_FACTIONLIST;
+lbSetCurSel [DLG_Z_FACTION_COMBO, 0];
+
+
 while {dialog} do {
-  if (Z_TYPE_SELECTED!="" ) then {    
+  if (Z_TYPE_SELECTED!="" ) then { 
     ZCURLIST = 
     switch (Z_TYPE_SELECTED) do
     {
@@ -38,12 +47,21 @@ while {dialog} do {
     };
 //    format["ZCURLIST %1  ", ZCURLIST] call z_smsg;
     lbClear DLG_Z_LIST;
+    _index=0;
+//    [ZCURLIST] call z_diaglog;
     for "_i" from 0 to (count ZCURLIST)-1 do {
     	_array = ZCURLIST select _i;
-    	_text = format ["%1 %2",_array select 2, _array select 3];
-    	lbAdd [DLG_Z_LIST,format["%1",_text]];
+    	_faction=_array select 3;
+    	_text = format ["%1 %2",_array select 2, _faction];
+    	format["_faction %1 Z_FACTION %2 ", _faction,Z_FACTION] call z_smsg;
+    	if (_faction==Z_FACTION) then { 
+      	lbAdd [DLG_Z_LIST,format["%1",_text]];
+      	lbSetValue [DLG_Z_LIST, _index, _i];
+        _index = _index + 1;
+    	};
+    	
     //	lbSetPicture [DLG_Z_LIST, _i, _array select 1];
-    	lbSetValue [DLG_Z_LIST, _i, _i];
+    	
     };
     Z_TYPE_LIST=Z_TYPE_SELECTED;
     Z_TYPE_SELECTED="";
@@ -52,7 +70,9 @@ while {dialog} do {
   if (Z_SELECTED) then {   // the user want to create this object
     _lbidx = lbCurSel DLG_Z_LIST;
     _index = lbValue [DLG_Z_LIST, _lbidx];
-		_selected = (ZCURLIST select _index) select 0;
+		//_selected = (ZCURLIST select _index) select 0;
+		_selected = ZCURLIST select _index;
+		format["_lbidx %1 _index %2 _selected %3", _lbidx,_index,_selected] call z_smsg;
 		if (Z_TYPE_LIST=="vehicles") then {
 		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createvehicle;
     };

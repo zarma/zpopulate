@@ -8,6 +8,20 @@ z_smsg = {
   	[playerSide,"HQ"] sideChat _this;
 };
 
+z_diaglog = {
+    _el =  _this select 0;
+    if (typename _el == "ARRAY") then {
+        _i=0;
+        {
+        diag_log text format["|=_i %2  ====   %1   ==|", _x,_i];
+        _i=_i+1;
+        }foreach _this;
+   }else{
+      diag_log text format["|=====   %1   ==|", _this]; 
+    };
+    
+};
+
 z_stock_info_object = {
 
     private ["_object","_pos","_dir","_str","_T","_textC"];
@@ -114,7 +128,27 @@ z_side = {
   _side
 };
 
+//  FACTIONS
+z_factions =  {
+  private ["_factionClasses","_factions","_element","_side","_sides","_sidelist"];
+	_factionClasses = (configfile >> "CfgFactionClasses");
+	_factions = [];
+	_sides = [];
+	_sidelist = [east,west,resistance,civilian];
 
+	for "_i" from 1 to (count _factionClasses - 1) do {
+		_element = _factionClasses select _i;
+		if (isclass _element) then {
+    	_side = getnumber(_element >> "side");
+			if (_side >= 0) then {
+				_factions = _factions + [configname _element];
+				_sides = _sides + [_sidelist select _side];
+			};
+		};
+	};
+	_factions=_factions+["Default"];
+	_factions
+};
 
 // TO DELETE CODE ABOVE
 

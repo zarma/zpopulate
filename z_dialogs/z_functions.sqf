@@ -15,8 +15,12 @@ z_deleteSelectedObject = {
   
   _object = z_objects select _index;
   deletevehicle _object;
-  
-  format["_object %1  _lbidx %2 _index %3", _object,_lbidx,_index] call z_smsg ;
   z_objects = z_objects - [_object];
 };
 
+z_selectFaction = {
+    _lbidx = lbCurSel DLG_Z_FACTION_COMBO;
+    _index = lbValue [DLG_Z_FACTION_COMBO, _lbidx];  
+    Z_FACTION=Z_FACTIONLIST select _index;
+    Z_TYPE_SELECTED=Z_TYPE_LIST; // force refresh list
+}; 
