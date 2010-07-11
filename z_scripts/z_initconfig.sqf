@@ -9,9 +9,11 @@
 Z_VEHCLASSES = ["car", "motorcycle", "tank", "helicopter", "airplane"];
 Z_STATICCLASSES = ["StaticWeapon"];
 Z_MENCLASSES = ["soldier"];
+Z_THINGSCLASSES = ["thing"];
 Z_VEHLIST = [];
 Z_STATICLIST = [];
 Z_MENLIST = [];
+Z_THINGLIST = [];
 Z_FACTIONLIST = call z_factions;
 
 
@@ -38,6 +40,10 @@ Z_FACTIONLIST = call z_factions;
     	   };
     	   if (_simulation in Z_MENCLASSES) then {
             Z_MENLIST = Z_MENLIST + [[_displayname,_picture,_configName,_faction]];
+    	   };
+    	   if (_simulation in Z_THINGSCLASSES) then {
+    	     [_displayname,_picture,_configName,_faction,_simulation] call z_diaglog;
+            Z_THINGLIST = Z_THINGLIST + [[_displayname,_picture,_configName,_faction]];
     	   };
  //   	   [_displayname,_picture,_configName,_faction,_simulation] call z_diaglog;
   	   };

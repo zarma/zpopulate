@@ -211,7 +211,7 @@ class Z_Dialog {
   	h = 0.04;
 		sizeEx = 0.04;
 	 	text = "Things";
-  	action = "Z_TYPE_SELECTED='';";
+  	action = "Z_TYPE_SELECTED='things';";
   };
   class ZSELECTBTN : RscButton_Z
   {

@@ -22,11 +22,12 @@ z_diaglog = {
     
 };
 
+
 z_stock_info_object = {
 
     private ["_object","_pos","_dir","_str","_T","_textC"];
     
-    format["_this %1 ", _this] call z_smsg;
+ //   format["_this %1 ", _this] call z_smsg;
     _object = _this select 0;
     _pos = getposASL _object;
     _dir = getdir _object;
@@ -54,9 +55,11 @@ z_createVehicle = {
   _typevehicle = _this select 0;
   _position = _this select 1;
   _dir  = _this select 2;
-  _vehicle = _typevehicle createVehicle [1,1,0];
+//  _vehicle = _typevehicle createVehicle [1,1,0];
+  _vehicle =  createVehicle [_typevehicle, [1,1,0], [], 0, "CAN_COLLIDE"];
   _vehicle setPosASL _position;
 	_vehicle setdir _dir;
+	_action = _vehicle addAction [("<t color=""#dddd00"">take object</t>"), "z_scripts\z_takeobject.sqf", nil, 5, true, true];
 	_vehicle
 };
 

@@ -43,17 +43,15 @@ while {dialog} do {
     {
       case 'men': {Z_MENLIST};
       case 'vehicles': {Z_VEHLIST};
- //     case 'things': {exitWith {hint "things not implemented";};};
+      case 'things': {Z_THINGLIST};
     };
-//    format["ZCURLIST %1  ", ZCURLIST] call z_smsg;
     lbClear DLG_Z_LIST;
     _index=0;
-//    [ZCURLIST] call z_diaglog;
+    [ZCURLIST] call z_diaglog;
     for "_i" from 0 to (count ZCURLIST)-1 do {
     	_array = ZCURLIST select _i;
     	_faction=_array select 3;
     	_text = format ["%1 %2",_array select 2, _faction];
-    	format["_faction %1 Z_FACTION %2 ", _faction,Z_FACTION] call z_smsg;
     	if (_faction==Z_FACTION) then { 
       	lbAdd [DLG_Z_LIST,format["%1",_text]];
       	lbSetValue [DLG_Z_LIST, _index, _i];
@@ -72,14 +70,12 @@ while {dialog} do {
     _index = lbValue [DLG_Z_LIST, _lbidx];
 		//_selected = (ZCURLIST select _index) select 0;
 		_selected = ZCURLIST select _index;
-		format["_lbidx %1 _index %2 _selected %3", _lbidx,_index,_selected] call z_smsg;
-		if (Z_TYPE_LIST=="vehicles") then {
-		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createvehicle;
-    };
     if (Z_TYPE_LIST=="men") then {
 		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createunit;
 		  z_last_created_unit = _vehicle;
 		  z_selected_unit = z_last_created_unit;
+		}else{
+		  _vehicle = [(ZCURLIST select _index) select 2, getPosASL player,getDir player] call z_createvehicle;
     };
 		z_objects = z_objects + [_vehicle];
 		Z_SELECTED=false;
