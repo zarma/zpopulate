@@ -44,6 +44,7 @@ while {dialog} do {
       case 'men': {Z_MENLIST};
       case 'vehicles': {Z_VEHLIST};
       case 'things': {Z_THINGLIST};
+      case 'houses' : {Z_HOUSELIST};
     };
     lbClear DLG_Z_LIST;
     _index=0;
@@ -51,7 +52,7 @@ while {dialog} do {
     for "_i" from 0 to (count ZCURLIST)-1 do {
     	_array = ZCURLIST select _i;
     	_faction=_array select 3;
-    	_text = format ["%1 %2",_array select 2, _faction];
+    	_text = format ["%1 %2 %3",_array select 0,_array select 2, _faction];
     	if (_faction==Z_FACTION) then { 
       	lbAdd [DLG_Z_LIST,format["%1",_text]];
       	lbSetValue [DLG_Z_LIST, _index, _i];

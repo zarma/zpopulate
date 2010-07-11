@@ -161,7 +161,7 @@ class Z_Dialog {
     sizeEx = 0.04;
     text = "Available objects";
   };
-  controls[] = { VEHLIST,FACTIONLIST,ZMANBTN,ZVEHBTN,ZSELECTBTN,ZTHINGBTN,ZCLOSEBTN };
+  controls[] = { VEHLIST,FACTIONLIST,ZMANBTN,ZVEHBTN,ZHOUSEBTN,ZSELECTBTN,ZTHINGBTN,ZCLOSEBTN };
   class VEHLIST : RscListBox_Z {
   	idc = DLG_Z_LIST;
   	x = 0.21;
@@ -213,10 +213,21 @@ class Z_Dialog {
 	 	text = "Things";
   	action = "Z_TYPE_SELECTED='things';";
   };
+  class ZHOUSEBTN : RscButton_Z
+  {
+  	idc = DLG_Z_ZHOUSEBTN;
+  	x = 0.8;
+  	y = 0;
+  	w = 0.15;
+  	h = 0.04;
+		sizeEx = 0.04;
+	 	text = "Houses";
+  	action = "Z_TYPE_SELECTED='houses';";
+  };
   class ZSELECTBTN : RscButton_Z
   {
   	idc = DLG_Z_ZSELECTBTN;
-  	x = 0.8;
+  	x = 1.0;
   	y = 0;
   	w = 0.15;
   	h = 0.04;
@@ -227,7 +238,7 @@ class Z_Dialog {
   class ZCLOSEBTN : RscButton_Z
   {
   	idc = DLG_Z_CLOSEBTN;
-  	x = 1.0;
+  	x = 1.2;
   	y = 0;
   	w = 0.15;
   	h = 0.04;
