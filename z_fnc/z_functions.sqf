@@ -51,7 +51,7 @@ z_stock_info_object = {
 
 z_createVehicle = {
 // TODO CREATE MARKER IN POSITION WITH DISPLAYNAME
-  private ["_vehicle","_position","_dir"];
+  private ["_vehicle","_position","_dir","_typevehicle","_action"];
   _typevehicle = _this select 0;
   _position = _this select 1;
   _dir  = _this select 2;
@@ -60,6 +60,7 @@ z_createVehicle = {
   _vehicle setPosASL _position;
 	_vehicle setdir _dir;
 	_action = _vehicle addAction [("<t color=""#dddd00"">take object</t>"), "z_scripts\z_takeobject.sqf", nil, 5, true, true];
+	_action = _vehicle addAction [("<t color=""#dddd00"">copy object</t>"), "z_scripts\z_copyobject.sqf", _typevehicle, 5, true, true];
 	_vehicle
 };
 

@@ -48,7 +48,7 @@ while {dialog} do {
     };
     lbClear DLG_Z_LIST;
     _index=0;
-    [ZCURLIST] call z_diaglog;
+//    [ZCURLIST] call z_diaglog;
     for "_i" from 0 to (count ZCURLIST)-1 do {
     	_array = ZCURLIST select _i;
     	_faction=_array select 3;

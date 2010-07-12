@@ -51,7 +51,7 @@ Z_FACTIONLIST = call z_factions;
 //    	     [_displayname,_picture,_configName,_faction,_simulation] call z_diaglog;
             Z_HOUSELIST = Z_HOUSELIST + [[_displayname,_picture,_configName,_faction]];
     	   };
-//   	   [_displayname,_picture,_configName,_faction,_simulation] call z_diaglog;
+ //  	   [_displayname,_picture,_configName,_faction,_simulation] call z_diaglog;
   	   };
   	};
   	
