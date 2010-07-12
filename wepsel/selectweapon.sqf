@@ -5,7 +5,9 @@
 //-----
 private ["_unit"];
 _unit = z_selected_unit;
-// format["_unit %1  ", _unit] call z_smsg ;
+_unitweapons = weapons _unit;
+_unitmagazines = magazines _unit;
+ format["_unitweapons %1  ", _unitweapons] call z_smsg ;
 _weaponsList = [];
 _namelist = [];
 _cfgweapons = configFile >> "cfgWeapons";
@@ -138,13 +140,15 @@ _muzzles = getArray(configfile >> "cfgWeapons" >> _wepsel >> "muzzles");
 		_mags = getArray(configfile >> "cfgWeapons" >> _wepsel >> "magazines");
 		{
 			KRON_MAGS=KRON_MAGS+[_x];
-			_unit addMagazine _x;
+			//_unit addMagazine _x;
+			for "_i" from 0 to 7 do {_unit addMagazine _x};
 		}forEach _mags;
 	} else {
 		_mags = getArray(configfile >> "cfgWeapons" >> _wepsel >> _x >> "magazines");
 		{
 			KRON_MAGS=KRON_MAGS+[_x];
-			_unit addMagazine _x;
+		//	_unit addMagazine _x;
+			for "_i" from 0 to 7 do {_unit addMagazine _x};
 		}forEach _mags;
 	};
 }forEach _muzzles;
