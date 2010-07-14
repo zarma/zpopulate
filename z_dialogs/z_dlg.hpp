@@ -137,7 +137,7 @@ class Z_Dialog {
     text = ;
   	x = 0.2;
   	y = 0.1;
-  	w = 0.8;
+  	w = 1;
   	h = 0.8;
   	moving = 1;
   };

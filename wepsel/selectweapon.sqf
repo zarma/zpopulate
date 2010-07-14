@@ -7,7 +7,8 @@ private ["_unit"];
 _unit = z_selected_unit;
 _unitweapons = weapons _unit;
 _unitmagazines = magazines _unit;
- format["_unitweapons %1  ", _unitweapons] call z_smsg ;
+ 
+ format["_unitweapons %1  _unitmagazines %2 %3", _unitweapons,_unitmagazines,__muzzles] call z_smsg ;
 _weaponsList = [];
 _namelist = [];
 _cfgweapons = configFile >> "cfgWeapons";
